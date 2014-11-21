@@ -12,7 +12,13 @@ function changeTitle(newPostfix) {
             chrome.tabs.getAllInWindow(window.id, function(tabs) {
                 tabs.forEach(function(tab) {
                     chrome.tabs.executeScript(tab.id, {
-                        code: 'if(!document.originalTitleOnceSaved){document.originalTitleOnceSaved=true;document.originalTitle=document.title;}; document.title = document.originalTitle + "' + (newPostfix ? (' - ' + newPostfix) : '') + '";'
+                        code: '\
+                            if (!document.originalTitleOnceSaved) { \
+                                document.originalTitleOnceSaved = true; \
+                                document.originalTitle = document.title; \
+                            } \
+                            document.title = document.originalTitle + "' + (newPostfix ? (' - ' + newPostfix) : '') + '"; \
+                        '
                     });
                 });
             });
