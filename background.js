@@ -12,16 +12,18 @@ function changeTitle(newPostfix) {
             chrome.tabs.getAllInWindow(window.id, function(tabs) {
                 tabs.forEach(function(tab) {
                     chrome.tabs.executeScript(tab.id, {
-                        code: '\
-                            if (!document.originalTitleOnceSaved) { \
-                                document.originalTitleOnceSaved = true; \
-                                document.originalTitle = document.title; \
-                            } \
-                            document.title = document.originalTitle + "' + (newPostfix ? (' - ' + newPostfix) : '') + '"; \
-                        '
+                        code: 'var newPostfix="' + newPostfix + '"',
+                    }, function() {
+                        chrome.tabs.executeScript(tab.id, {
+                            file: 'background-script.js',
+                        });
                     });
                 });
             });
         });
     });
 }
+
+
+
+

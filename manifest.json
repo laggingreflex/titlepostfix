@@ -1,7 +1,6 @@
 {
     "manifest_version": 2,
-
-    "name": "Title Postfix",
+    "name": "titlepostfix",
     "description": "Add a postfix to your tab title(s)",
     "version": "0.1",
 
@@ -14,7 +13,7 @@
         "scripts": ["background.js"]
     },
     "browser_action": {
-        "default_icon": "icon.png",
+        "default_icon": "data/icon.png",
         "default_popup": "popup.html"
     }
 }
